@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - YT Transcript AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4cc9f0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+        
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .about-hero {
+            background: linear-gradient(rgba(67, 97, 238, 0.9), rgba(63, 55, 201, 0.9)), 
+                        url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .about-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .about-hero p {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .card {
+            border: none;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 30px;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 15px 25px;
+            border-bottom: none;
+        }
+        
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.8rem;
+        }
+        
+        .team-card {
+            transition: all 0.3s ease;
+        }
+        
+        .team-card:hover {
+            background-color: #f8f9fa;
+        }
+        
+        .team-card img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border: 5px solid rgba(67, 97, 238, 0.1);
+        }
+        
+        .social-icon {
+            width: 36px;
+            height: 36px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+        
+        .sticker {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            transform: rotate(-15deg);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            z-index: 1;
+        }
+        
+        .sticker-1 {
+            top: 50px;
+            left: 50px;
+            background: linear-gradient(135deg, #f72585, #b5179e);
+        }
+        
+        .sticker-2 {
+            bottom: 30px;
+            right: 50px;
+            background: linear-gradient(135deg, #4cc9f0, #4895ef);
+            transform: rotate(15deg);
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .cta-section::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 200px;
+            height: 200px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        
+        .cta-section::after {
+            content: "";
+            position: absolute;
+            bottom: -80px;
+            right: -80px;
+            width: 300px;
+            height: 300px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border: none;
+            padding: 12px 30px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(67, 97, 238, 0.3);
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            padding: 30px 0;
+        }
+        
+        .floating-robot {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 80px;
+            height: 80px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 10px 30px rgba(67, 97, 238, 0.4);
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+            cursor: pointer;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+        
+        @media (max-width: 768px) {
+            .about-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-hero p {
+                font-size: 1.2rem;
+            }
+            
+            .sticker {
+                width: 80px;
+                height: 80px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-robot me-2"></i>YT Transcript AI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-home me-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#"><i class="fas fa-info-circle me-1"></i> About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-envelope me-1"></i> Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero text-center">
+        <div class="sticker sticker-1 d-none d-md-flex">
+            <span>AI Powered</span>
+        </div>
+        <div class="sticker sticker-2 d-none d-md-flex">
+            <span>100% Free</span>
+        </div>
+        <div class="container position-relative">
+            <h1 class="fw-bold mb-3">About Our Project</h1>
+            <p class="lead">Transforming video content into actionable knowledge with AI</p>
+            <div class="mt-4">
+                <a href="/" class="btn btn-light btn-lg px-4 me-2">
+                    <i class="fas fa-play me-2"></i>Try It Now
+                </a>
+                <a href="#features" class="btn btn-outline-light btn-lg px-4">
+                    <i class="fas fa-bolt me-2"></i>Features
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="container my-5 py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card shadow-sm mb-5 border-0">
+                    <div class="card-header">
+                        <h2 class="mb-0"><i class="fas fa-lightbulb me-2"></i>Our Mission</h2>
+                    </div>
+                    <div class="card-body p-4 p-md-5">
+                        <p class="lead mb-4">To make video content more accessible and valuable through artificial intelligence.</p>
+                        <p>In today's digital age, video content is abundant but time-consuming to consume. Our YouTube Transcript AI Analyzer helps you extract the key information from videos without watching them in their entirety. We believe in democratizing knowledge and making learning more efficient through cutting-edge technology.</p>
+                        <div class="mt-4">
+                            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" alt="AI Technology" class="img-fluid rounded-3 shadow">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm mb-5 border-0" id="features">
+                    <div class="card-header">
+                        <h2 class="mb-0"><i class="fas fa-cogs me-2"></i>How It Works</h2>
+                    </div>
+                    <div class="card-body p-4 p-md-5">
+                        <div class="row g-4">
+                            <div class="col-md-4 text-center">
+                                <div class="feature-icon">
+                                    <i class="fas fa-link"></i>
+                                </div>
+                                <h4>1. Provide URL</h4>
+                                <p>Enter any YouTube video link</p>
+                                <div class="text-primary">
+                                    <i class="fas fa-arrow-down fa-2x"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <div class="feature-icon">
+                                    <i class="fas fa-language"></i>
+                                </div>
+                                <h4>2. Extract Transcript</h4>
+                                <p>We retrieve the video's captions</p>
+                                <div class="text-primary">
+                                    <i class="fas fa-arrow-down fa-2x"></i>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <div class="feature-icon">
+                                    <i class="fas fa-brain"></i>
+                                </div>
+                                <h4>3. AI Analysis</h4>
+                                <p>Get summaries and answers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card shadow-sm border-0">
+                    <div class="card-header">
+                        <h2 class="mb-0"><i class="fas fa-users me-2"></i>Our Team</h2>
+                    </div>
+                    <div class="card-body p-4 p-md-5">
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <div class="team-card card h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center p-4">
+                                        <img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle mb-3" alt="Developer">
+                                        <h4>Alex Johnson</h4>
+                                        <p class="text-muted">Lead Developer</p>
+                                        <p class="mb-3">AI & NLP Specialist with 8+ years of experience in machine learning applications.</p>
+                                        <div class="d-flex justify-content-center">
+                                            <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                                            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                                            <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="team-card card h-100 border-0 shadow-sm">
+                                    <div class="card-body text-center p-4">
+                                        <img src="https://randomuser.me/api/portraits/women/44.jpg" class="rounded-circle mb-3" alt="Designer">
+                                        <h4>Sarah Williams</h4>
+                                        <p class="text-muted">UI/UX Designer</p>
+                                        <p class="mb-3">Creative designer focused on creating intuitive and beautiful user experiences.</p>
+                                        <div class="d-flex justify-content-center">
+                                            <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
+                                            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+                                            <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="display-4 fw-bold text-primary">10K+</div>
+                    <p class="text-muted">Users Served</p>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="display-4 fw-bold text-primary">50K+</div>
+                    <p class="text-muted">Transcripts Analyzed</p>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="display-4 fw-bold text-primary">100%</div>
+                    <p class="text-muted">Free Service</p>
+                </div>
+                <div class="col-md-3 col-6 mb-4">
+                    <div class="display-4 fw-bold text-primary">24/7</div>
+                    <p class="text-muted">Available</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section text-center">
+        <div class="container position-relative">
+            <h2 class="mb-4">Ready to transform how you learn from videos?</h2>
+            <p class="lead mb-5">Join thousands of users who save hours every week with our AI-powered tool.</p>
+            <a href="/" class="btn btn-light btn-lg px-5">
+                <i class="fas fa-play me-2"></i>Get Started Now
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-3"><i class="fas fa-robot me-2"></i>YT Transcript AI</h5>
+                    <p>Making video content accessible and valuable through artificial intelligence.</p>
+                    <div class="d-flex">
+                        <a href="#" class="social-icon me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon me-2"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon me-2"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="/" class="text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none">About</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none">Features</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="mb-3">Resources</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-decoration-none">Documentation</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none">API</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none">Blog</a></li>
+                        <li class="mb-2"><a href="#" class="text-decoration-none">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h5 class="mb-3">Newsletter</h5>
+                    <p>Subscribe to get updates on new features.</p>
+                    <div class="input-group mb-3">
+                        <input type="email" class="form-control" placeholder="Your email">
+                        <button class="btn btn-primary" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">© 2023 YT Transcript AI. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-decoration-none me-3">Privacy Policy</a>
+                    <a href="#" class="text-decoration-none">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Robot -->
+    <div class="floating-robot">
+        <i class="fas fa-robot"></i>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Simple animation for the floating robot
+        document.querySelector('.floating-robot').addEventListener('click', function() {
+            alert("Hello! How can I help you today?");
+        });
+    </script>
+</body>
+</html>

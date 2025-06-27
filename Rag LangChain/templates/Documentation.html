@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - YT Transcript AI</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #4361ee;
+            --secondary-color: #3f37c9;
+            --accent-color: #4cc9f0;
+            --light-color: #f8f9fa;
+            --dark-color: #212529;
+            --success-color: #4bb543;
+            --warning-color: #ffcc00;
+            --danger-color: #ff3333;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+            line-height: 1.7;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px 0;
+        }
+        
+        .navbar-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .doc-hero {
+            background: linear-gradient(rgba(67, 97, 238, 0.9), rgba(63, 55, 201, 0.9)), 
+                        url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 100px 0;
+            position: relative;
+        }
+        
+        .doc-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .doc-hero p {
+            font-size: 1.5rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .doc-sidebar {
+            position: sticky;
+            top: 20px;
+            height: calc(100vh - 40px);
+            overflow-y: auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 20px;
+        }
+        
+        .doc-sidebar .nav-link {
+            color: var(--dark-color);
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .doc-sidebar .nav-link:hover, .doc-sidebar .nav-link.active {
+            background-color: rgba(67, 97, 238, 0.1);
+            color: var(--primary-color);
+        }
+        
+        .doc-sidebar .nav-link i {
+            width: 25px;
+            text-align: center;
+            margin-right: 8px;
+        }
+        
+        .doc-content {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 30px;
+        }
+        
+        .doc-section {
+            margin-bottom: 50px;
+            scroll-margin-top: 20px;
+        }
+        
+        .doc-section h2 {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 25px;
+        }
+        
+        .code-block {
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            padding: 15px;
+            font-family: 'Courier New', monospace;
+            margin: 15px 0;
+            border-left: 4px solid var(--primary-color);
+        }
+        
+        .feature-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card .card-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border-radius: 10px 10px 0 0 !important;
+        }
+        
+        .badge-custom {
+            background-color: var(--accent-color);
+            color: white;
+            font-weight: 500;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        
+        .step-number {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+        
+        .note {
+            background-color: #e7f4ff;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .warning {
+            background-color: #fff8e6;
+            border-left: 4px solid var(--warning-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .success {
+            background-color: #f0fff0;
+            border-left: 4px solid var(--success-color);
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 5px 5px 0;
+        }
+        
+        .floating-badge {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 15px;
+            border-radius: 50%;
+            box-shadow: 0 5px 20px rgba(67, 97, 238, 0.3);
+            z-index: 1000;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        
+        @media (max-width: 992px) {
+            .doc-sidebar {
+                position: static;
+                height: auto;
+                margin-bottom: 30px;
+            }
+            
+            .doc-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .doc-hero p {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-robot me-2"></i>YT Transcript AI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/"><i class="fas fa-home me-1"></i> Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about.html"><i class="fas fa-info-circle me-1"></i> About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/docs.html"><i class="fas fa-book me-1"></i> Documentation</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-envelope me-1"></i> Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="doc-hero text-center">
+        <div class="container">
+            <h1 class="fw-bold mb-3">YT Transcript AI Documentation</h1>
+            <p class="lead">Everything you need to know to get the most out of our platform</p>
+        </div>
+    </section>
+
+    <!-- Documentation Content -->
+    <section class="container my-5">
+        <div class="row">
+            <!-- Sidebar Navigation -->
+            <div class="col-lg-3">
+                <div class="doc-sidebar">
+                    <h5 class="mb-4"><i class="fas fa-list-alt me-2"></i>Documentation</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#getting-started"><i class="fas fa-rocket"></i> Getting Started</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#features"><i class="fas fa-star"></i> Key Features</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#api"><i class="fas fa-code"></i> API Reference</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#faq"><i class="fas fa-question-circle"></i> FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#troubleshooting"><i class="fas fa-tools"></i> Troubleshooting</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#examples"><i class="fas fa-laptop-code"></i> Examples</a>
+                        </li>
+                    </ul>
+                    
+                    <hr class="my-4">
+                    
+                    <h5 class="mb-3"><i class="fas fa-bookmark me-2"></i>Quick Links</h5>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-download"></i> Download SDK</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-video"></i> Video Tutorials</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#"><i class="fas fa-file-alt"></i> Release Notes</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="col-lg-9">
+                <div class="doc-content">
+                    <!-- Getting Started Section -->
+                    <section id="getting-started" class="doc-section">
+                        <h2><i class="fas fa-rocket me-2"></i>Getting Started</h2>
+                        <p class="lead">Welcome to YT Transcript AI! Follow these simple steps to begin extracting insights from YouTube videos.</p>
+                        
+                        <div class="card feature-card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0">Step-by-Step Guide</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex align-items-start mb-4">
+                                    <span class="step-number">1</span>
+                                    <div>
+                                        <h5>Create an Account</h5>
+                                        <p>Sign up for a free account to get your API key and access all features.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="d-flex align-items-start mb-4">
+                                    <span class="step-number">2</span>
+                                    <div>
+                                        <h5>Obtain Your API Key</h5>
+                                        <p>Find your unique API key in the dashboard after logging in.</p>
+                                        <div class="code-block">
+                                            API Key: YTAI-XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="d-flex align-items-start mb-4">
+                                    <span class="step-number">3</span>
+                                    <div>
+                                        <h5>Make Your First Request</h5>
+                                        <p>Use our simple API endpoint to analyze your first video.</p>
+                                        <div class="code-block">
+                                            POST https://api.yttranscript.ai/v1/analyze<br>
+                                            Headers: {<br>
+                                            &nbsp;&nbsp;"Authorization": "Bearer YOUR_API_KEY",<br>
+                                            &nbsp;&nbsp;"Content-Type": "application/json"<br>
+                                            }<br>
+                                            Body: {<br>
+                                            &nbsp;&nbsp;"video_url": "https://youtube.com/watch?v=XXXXXXXXXXX"<br>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="d-flex align-items-start">
+                                    <span class="step-number">4</span>
+                                    <div>
+                                        <h5>View Results</h5>
+                                        <p>Receive structured data including transcript, summary, and key insights.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="note">
+                            <strong><i class="fas fa-lightbulb me-2"></i>Note:</strong> The free tier allows up to 100 requests per month. For higher limits, consider upgrading to a paid plan.
+                        </div>
+                    </section>
+                    
+                    <!-- Features Section -->
+                    <section id="features" class="doc-section">
+                        <h2><i class="fas fa-star me-2"></i>Key Features</h2>
+                        <p>YT Transcript AI offers powerful features to transform video content into actionable data.</p>
+                        
+                        <div class="row">
+                            <div class="col-md-6 mb-4">
+                                <div class="card feature-card h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="bg-primary bg-opacity-10 p-3 rounded me-3">
+                                                <i class="fas fa-language text-primary fa-2x"></i>
+                                            </div>
+                                            <h5 class="mb-0">Multilingual Support</h5>
+                                        </div>
+                                        <p>Automatically detect and process videos in over 50 languages with accurate translation options.</p>
+                                        <span class="badge badge-custom">New in v2.1</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                <div class="card feature-card h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="bg-primary bg-opacity-10 p-3 rounded me-3">
+                                                <i class="fas fa-chart-pie text-primary fa-2x"></i>
+                                            </div>
+                                            <h5 class="mb-0">Topic Analysis</h5>
+                                        </div>
+                                        <p>Identify key topics and concepts mentioned in the video with relevance scores.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                <div class="card feature-card h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="bg-primary bg-opacity-10 p-3 rounded me-3">
+                                                <i class="fas fa-quote-right text-primary fa-2x"></i>
+                                            </div>
+                                            <h5 class="mb-0">Highlight Extraction</h5>
+                                        </div>
+                                        <p>Automatically extract the most important quotes and moments from the video.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-6 mb-4">
+                                <div class="card feature-card h-100">
+                                    <div class="card-body">
+                                        <div class="d-flex align-items-center mb-3">
+                                            <div class="bg-primary bg-opacity-10 p-3 rounded me-3">
+                                                <i class="fas fa-bolt text-primary fa-2x"></i>
+                                            </div>
+                                            <h5 class="mb-0">Real-time Processing</h5>
+                                        </div>
+                                        <p>Get results in seconds with our high-performance processing engine.</p>
+                                        <span class="badge badge-custom">Popular</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- API Reference Section -->
+                    <section id="api" class="doc-section">
+                        <h2><i class="fas fa-code me-2"></i>API Reference</h2>
+                        <p>Complete documentation for the YT Transcript AI API endpoints.</p>
+                        
+                        <div class="card feature-card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0"><i class="fas fa-exchange-alt me-2"></i>Analyze Endpoint</h5>
+                            </div>
+                            <div class="card-body">
+                                <p>This is the main endpoint for analyzing YouTube videos.</p>
+                                
+                                <h6 class="mt-4">HTTP Request</h6>
+                                <div class="code-block">
+                                    POST https://api.yttranscript.ai/v1/analyze
+                                </div>
+                                
+                                <h6 class="mt-4">Request Parameters</h6>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Parameter</th>
+                                                <th>Type</th>
+                                                <th>Required</th>
+                                                <th>Description</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>video_url</td>
+                                                <td>String</td>
+                                                <td>Yes</td>
+                                                <td>Full YouTube video URL</td>
+                                            </tr>
+                                            <tr>
+                                                <td>language</td>
+                                                <td>String</td>
+                                                <td>No</td>
+                                                <td>Preferred language code (default: auto-detect)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>summarize</td>
+                                                <td>Boolean</td>
+                                                <td>No</td>
+                                                <td>Whether to generate a summary (default: true)</td>
+                                            </tr>
+                                            <tr>
+                                                <td>extract_keywords</td>
+                                                <td>Boolean</td>
+                                                <td>No</td>
+                                                <td>Whether to extract keywords (default: true)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                
+                                <h6 class="mt-4">Example Response</h6>
+                                <div class="code-block">
+                                    {<br>
+                                    &nbsp;&nbsp;"status": "success",<br>
+                                    &nbsp;&nbsp;"data": {<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;"video_id": "XXXXXXXXXXX",<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;"title": "Sample YouTube Video",<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;"duration": "12:34",<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;"transcript": [...],<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;"summary": "This video discusses...",<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;"keywords": ["keyword1", "keyword2"],<br>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;"timestamp": "2023-06-15T12:00:00Z"<br>
+                                    &nbsp;&nbsp;}<br>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="warning">
+                            <strong><i class="fas fa-exclamation-triangle me-2"></i>Warning:</strong> Always include your API key in the Authorization header. Exposing it in client-side code may lead to unauthorized usage.
+                        </div>
+                    </section>
+                    
+                    <!-- FAQ Section -->
+                    <section id="faq" class="doc-section">
+                        <h2><i class="fas fa-question-circle me-2"></i>Frequently Asked Questions</h2>
+                        
+                        <div class="accordion" id="faqAccordion">
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne">
+                                        How accurate is the transcript extraction?
+                                    </button>
+                                </h3>
+                                <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Our AI achieves approximately 95% accuracy for videos with clear speech. Accuracy may vary based on audio quality, background noise, and speaker accents. For best results, use videos with official captions.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo">
+                                        Is there a limit to video length?
+                                    </button>
+                                </h3>
+                                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        The free tier supports videos up to 30 minutes. Paid plans support videos up to 4 hours. For longer videos, consider using our chunk processing feature.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="headingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree">
+                                        How do I handle rate limits?
+                                    </button>
+                                </h3>
+                                <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        The free tier allows 5 requests per minute. If you exceed this limit, you'll receive a 429 status code. Implement exponential backoff in your code or upgrade your plan for higher limits.
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-item">
+                                <h3 class="accordion-header" id="headingFour">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour">
+                                        Can I analyze private or unlisted videos?
+                                    </button>
+                                </h3>
+                                <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        Currently, we only support public YouTube videos. Support for unlisted videos is planned for Q4 2023.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <!-- Troubleshooting Section -->
+                    <section id="troubleshooting" class="doc-section">
+                        <h2><i class="fas fa-tools me-2"></i>Troubleshooting</h2>
+                        
+                        <div class="card feature-card mb-4">
+                            <div class="card-header">
+                                <h5 class="mb-0">Common Issues and Solutions</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th>Issue</th>
+                                                <th>Possible Cause</th>
+                                                <th>Solution</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>401 Unauthorized</td>
+                                                <td>Invalid or missing API key</td>
+                                                <td>Verify your API key is correct and included in the Authorization header</td>
+                                            </tr>
+                                            <tr>
+                                                <td>404 Not Found</td>
+                                                <td>Invalid YouTube URL</td>
+                                                <td>Ensure the video exists and the URL is properly formatted</td>
+                                            </tr>
+                                            <tr>
+                                                <td>500 Server Error</td>
+                                                <td>Temporary service issue</td>
+                                                <td>Wait a few minutes and retry. Check our status page for updates</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Empty transcript</td>
+                                                <td>Video has no captions</td>
+                                                <td>Try a different video or enable auto-captions on YouTube</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="success">
+                            <strong><i class="fas fa-check-circle me-2"></i>Tip:</strong> For persistent issues, contact our support team with the request ID included in all API responses.
+                        </div>
+                    </section>
+                    
+                    <!-- Examples Section -->
+                    <section id="examples" class="doc-section">
+                        <h2><i class="fas fa-laptop-code me-2"></i>Code Examples</h2>
+                        
+                        <h5 class="mt-4">JavaScript Example</h5>
+                        <div class="code-block">
+                            const analyzeVideo = async (videoUrl) => {<br>
+                            &nbsp;&nbsp;try {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;const response = await fetch('https://api.yttranscript.ai/v1/analyze', {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;method: 'POST',<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;headers: {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Authorization': 'Bearer YOUR_API_KEY',<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'Content-Type': 'application/json'<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body: JSON.stringify({ video_url: videoUrl })<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;});<br>
+                            <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;const data = await response.json();<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;console.log('Video Summary:', data.data.summary);<br>
+                            &nbsp;&nbsp;} catch (error) {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;console.error('Error:', error);<br>
+                            &nbsp;&nbsp;}<br>
+                            };<br>
+                            <br>
+                            analyzeVideo('https://youtube.com/watch?v=XXXXXXXXXXX');
+                        </div>
+                        
+                        <h5 class="mt-4">Python Example</h5>
+                        <div class="code-block">
+                            import requests<br>
+                            <br>
+                            def analyze_video(video_url):<br>
+                            &nbsp;&nbsp;url = "https://api.yttranscript.ai/v1/analyze"<br>
+                            &nbsp;&nbsp;headers = {<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;"Authorization": "Bearer YOUR_API_KEY",<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;"Content-Type": "application/json"<br>
+                            &nbsp;&nbsp;}<br>
+                            &nbsp;&nbsp;data = {"video_url": video_url}<br>
+                            <br>
+                            &nbsp;&nbsp;response = requests.post(url, headers=headers, json=data)<br>
+                            &nbsp;&nbsp;if response.status_code == 200:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;return response.json()<br>
+                            &nbsp;&nbsp;else:<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;raise Exception(f"API request failed: {response.text}")<br>
+                            <br>
+                            # Usage<br>
+                            result = analyze_video("https://youtube.com/watch?v=XXXXXXXXXXX")<br>
+                            print("Video Title:", result["data"]["title"])
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="bg-primary text-white py-5">
+        <div class="container text-center">
+            <h2 class="mb-4">Ready to integrate YT Transcript AI?</h2>
+            <a href="#" class="btn btn-light btn-lg px-5 me-3">
+                <i class="fas fa-key me-2"></i>Get API Key
+            </a>
+            <a href="#" class="btn btn-outline-light btn-lg px-5">
+                <i class="fas fa-headset me-2"></i>Contact Support
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-3"><i class="fas fa-robot me-2"></i>YT Transcript AI</h5>
+                    <p>Making video content accessible and valuable through artificial intelligence.</p>
+                    <div class="d-flex">
+                        <a href="#" class="text-white me-3"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-3"><i class="fab fa-github fa-lg"></i></a>
+                        <a href="#" class="text-white"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="mb-3">Product</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Features</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Pricing</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">API</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Status</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="mb-3">Resources</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Documentation</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Blog</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Tutorials</a></li>
+                        <li class="mb-2"><a href="#" class="text-white text-decoration-none">Support</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <h5 class="mb-3">Newsletter</h5>
+                    <p>Subscribe to get updates on new features and improvements.</p>
+                    <div class="input-group">
+                        <input type="email" class="form-control" placeholder="Your email">
+                        <button class="btn btn-primary" type="button">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+            <hr class="my-4">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0">© 2023 YT Transcript AI. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-white text-decoration-none me-3">Privacy Policy</a>
+                    <a href="#" class="text-white text-decoration-none">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Help Badge -->
+    <a href="#" class="floating-badge">
+        <i class="fas fa-question"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
